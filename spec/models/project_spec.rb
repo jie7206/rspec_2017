@@ -40,5 +40,5 @@ RSpec.describe Project, type: :model do
     )
     expect(other_project).to be_valid
   end
-  
+
 end

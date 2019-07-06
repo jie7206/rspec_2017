@@ -37,3 +37,13 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'paperclip'
 gem 'geocoder'
+
+# Running Tests Automatically with Guard
+group :development do
+  gem 'guard'
+  gem 'guard-minitest'
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+  gem 'guard-jasmine'
+  gem 'rb-readline'
+end
