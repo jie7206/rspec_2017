@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Note, type: :model do
 
+  it "从预构件建立关联数据 generates associated data from a factory" do
+    note = FactoryGirl.create(:note)
+    puts "This note's project is #{note.project.inspect}"
+    puts "This note's user is #{note.user.inspect}"
+  end
+  
   before do
     @user = User.create(
       first_name: "Joe",
