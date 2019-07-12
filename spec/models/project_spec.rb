@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Project, type: :model do
 
+  it "can have many notes" do
+    project = FactoryGirl.create(:project, :with_notes)
+    expect(project.notes.length).to eq 5
+  end
+
   it "does not allow duplicate project names per user" do
-    user = User.create(
-      first_name: "Joe",
-      last_name:  "Tester",
-      email:      "joetester@example.com",
-      password:   "dottle-nouveau-pavilion-tights-furze",
-      )
+    user = FactoryGirl.create(:user)
     user.projects.create(
       name: "Test Project",
     )
@@ -20,21 +20,11 @@ RSpec.describe Project, type: :model do
   end
 
   it "allows two users to share a project name" do
-    user = User.create(
-      first_name: "Joe",
-      last_name:  "Tester",
-      email:      "joetester@example.com",
-      password:   "dottle-nouveau-pavilion-tights-furze",
-    )
+    user = FactoryGirl.create(:user)
     user.projects.create(
       name: "Test Project",
     )
-    other_user = User.create(
-      first_name: "Jane",
-      last_name:  "Tester",
-      email:      "janetester@example.com",
-      password:   "dottle-nouveau-pavilion-tights-furze",
-    )
+    other_user = FactoryGirl.create(:user, :jane)
     other_project = other_user.projects.build(
       name: "Test Project",
     )
