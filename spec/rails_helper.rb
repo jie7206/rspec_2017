@@ -58,4 +58,5 @@ RSpec.configure do |config|
   # 在测试中使用 Devise 提供的辅助方法
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include RequestSpecHelper, type: :request
+  config.include Warden::Test::Helpers
 end
