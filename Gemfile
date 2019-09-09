@@ -13,11 +13,15 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'parallel_tests', group: [:development, :test]
 
 group :test do
   gem 'capybara', '~> 2.15.2'
   gem 'launchy', '~> 2.4.3'
   gem 'poltergeist'
+  gem 'shoulda-matchers',
+    git: 'https://github.com/thoughtbot/shoulda-matchers.git',
+    branch: 'rails-5'
 end
 
 group :development, :test do

@@ -13,6 +13,15 @@ RSpec.describe User, type: :model do
     )
     expect(user).to be_valid
   end
+  it "能回传完整的姓名 returns a user's full name as a string" do
+    user = FactoryGirl.build(:user, first_name: "John", last_name: "Doe")
+    expect(user.name).to eq "John Doe"
+  end
+  it { is_expected.to validate_presence_of :first_name }
+  it { is_expected.to validate_presence_of :last_name }
+  it { is_expected.to validate_presence_of :email }
+  it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
+=begin
   it "必须有名字 is invalid without a first name" do
     user = FactoryGirl.build(:user, first_name: nil)
     user.valid?
@@ -34,8 +43,5 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:email]).to include("has already been taken")
   end
-  it "能回传完整的姓名 returns a user's full name as a string" do
-    user = FactoryGirl.build(:user, first_name: "John", last_name: "Doe")
-    expect(user.name).to eq "John Doe"
-  end
+=end
 end

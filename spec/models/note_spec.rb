@@ -5,6 +5,19 @@ RSpec.describe Note, type: :model do
   let(:user) { FactoryGirl.create(:user) }
   let(:project) { FactoryGirl.create(:project, owner: user) }
 
+  # it "delegates name to the user who created it #1" do
+  #   user = FactoryGirl.create(:user, first_name: "Fake", last_name: "User")
+  #   note = Note.new(user: user)
+  #   expect(note.user_name).to eq "Fake User"
+  # end
+
+  it "delegates name to the user who created it #2" do
+    user = instance_double("User", name: "Fake User")
+    note = Note.new
+    allow(note).to receive(:user).and_return(user)
+    expect(note.user_name).to eq "Fake User"
+end
+
   it "验证模型有效 is valid with a user, project, and message" do
     note = Note.new(
       message: "This is a sample note.",
